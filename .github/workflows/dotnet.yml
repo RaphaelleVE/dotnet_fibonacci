@@ -35,7 +35,7 @@ jobs:
     needs: tags
     uses: ./.github/workflows/Docker.yml
     with:
-      image_name: "raphaelle/fibonacci"
+      image_name: "raphaelleve/fibonacci"
       image_version: "${{ needs.tags.outputs.new_version }}"
       image_build_args: ""
       image_context: .
@@ -56,7 +56,7 @@ jobs:
         run: |
           # https://learn.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az-container-create()
           az group create --name mon-resource-group --location northeurope
-          az container create --resource-group mon-resource-group --name fibonacci-raphaelle --dns-name-label fibonacci-guillaume --image docker.io/raphaelle/fibonacci:${{ needs.tags.outputs.new_version }} --ports 8080
+          az container create --resource-group mon-resource-group --name fibonacci-raphaelle --dns-name-label fibonacci-raphaelle --image docker.io/raphaelleve/fibonacci:${{ needs.tags.outputs.new_version }} --ports 8080
   build:
     needs: tags
     runs-on: ubuntu-latest
