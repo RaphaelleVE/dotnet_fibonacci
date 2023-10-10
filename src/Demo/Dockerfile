@@ -2,11 +2,10 @@
 WORKDIR /src
 COPY . .
 RUN apk add clang gcc lld musl-dev build-base zlib-dev krb5-dev
-RUN dotnet publish "Demo.csproj" -c Release -r linux-arm64  \
+RUN dotnet publish "Demo.csproj" -c Release -r linux-musl-arm64  \
     /p:PublishAot=true /p:PublishTrimmed=true  \
     /p:PublishReadyToRun=true -o /publish
 
-FROM docker.io/library/alpine:latest AS base
 WORKDIR /app
 COPY --from=build /publish .
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
