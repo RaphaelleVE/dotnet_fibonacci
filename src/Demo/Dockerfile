@@ -2,7 +2,7 @@
 WORKDIR /src
 COPY . .
 RUN apk add clang gcc lld musl-dev build-base zlib-dev krb5-dev
-RUN dotnet publish "Demo.csproj" -c Release -r linux-musl-arm64  \
+RUN dotnet publish "Demo.csproj" -c Release -r linux-musl-x64  \
     /p:PublishAot=true /p:PublishTrimmed=true  \
     /p:PublishReadyToRun=true -o /publish
 
